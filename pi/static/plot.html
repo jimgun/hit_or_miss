@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script language="javascript" type="text/javascript" src="./jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="./jquery.flot.js"></script>
+<script language="javascript" type="text/javascript" src="./jquery.flot.threshold.min.js"></script>
+<script language="javascript" type="text/javascript" src="./jquery.flot.time.min.js"></script>
+<script type="text/javascript">
+	//var data = null;
+	var level = 0;
+</script>
+<!-- <script language="javascript" type="text/javascript" src="data.js"></script> -->
+
+<script type="text/javascript">
+
+	function getUrlVars() 
+    {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+            vars[key] = value;
+        });
+        return vars;
+    }
+
+    function onDataReceived(series) 
+    {
+        data = series;
+        $.plot("#plot", [data],
+        {
+            xaxis: 
+                {
+                    mode: "time"
+                },
+            series:
+            {
+                lines:
+                {
+                    lineWidth: 1.5
+                },
+                threshold: 
+                {
+                    below: level,
+                    color: "rgb(200, 20, 30)"
+                },
+                color: "#66E066"
+            }
+        });
+                
+	}
+    
+    $(function() 
+	{
+        var count = getUrlVars()["count"];
+        if(count == null)
+        {
+            count = 1000;
+        }
+        
+        level = getUrlVars()["level"]
+        if(level == null)
+        {
+            level = 10;
+        }
+		var dataurl = "http://" + window.location.host + "/last/" + count;
+        $.ajax({
+				url: dataurl,
+				type: "GET",
+				dataType: "json",
+				success: onDataReceived
+			});
+        
+	});
+
+			
+
+</script>
+</head>
+<body>
+
+<div id="plot" class="plotarea"></div>
+
+</body>
+</html>
