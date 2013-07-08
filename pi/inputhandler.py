@@ -11,7 +11,7 @@ class SampleStore:
         if len(self._sampleList) == self._maxSamples:
             self._sampleList.remove(self._sampleList[0])
         self._sampleList.append( sample )
-        #self.notifySampleAdded( sample )
+        self.notifySampleAdded( sample )
         
     def subscribe( self, subscriber ):
         self._subscribers.append( subscriber )
