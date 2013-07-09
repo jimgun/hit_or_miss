@@ -6,7 +6,7 @@ class MenuPage:
         self._display = display
         self._name = name
         self._isActive = False
-        self._displayLines = ["","","",""]
+        self._displayLines = [" "," "," "," "]
         
 
         

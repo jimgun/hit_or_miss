@@ -33,10 +33,7 @@ class _lastSamples:
 class _lcd:
         def GET(self):
             render = web.template.render('templates')
-            return render.lcd(singletons.uicontroller.getActivePage()._displayLines[0],
-            singletons.uicontroller.getActivePage()._displayLines[1],
-            singletons.uicontroller.getActivePage()._displayLines[2],
-            singletons.uicontroller.getActivePage()._displayLines[3])
+            return render.lcd(singletons.uicontroller.getActivePage().toString())
             
         
 if __name__ == "__main__":

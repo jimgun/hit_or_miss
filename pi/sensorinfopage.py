@@ -8,10 +8,10 @@ class SensorInfoPage(MenuPage):
     
     def show( self ):
         MenuPage.show( self )
-        line0 = ""
+        line0 = " "
         line1 = "  1 2 3 4 5 6 7 8   "
         line2 = "  - - * - - - * -   "
-        line3 = ""
+        line3 = " "
         
         self._displayLines = [line0, line1, line2, line3]
         
